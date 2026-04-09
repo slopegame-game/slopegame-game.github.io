@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var p=window.location.pathname;var n=p.replace(/\/+/g,'/').replace(/\.html$/,'');if(n.length>1&&n.endsWith('/'))n=n.slice(0,-1);if(n!==p)window.history.replaceState(null,'',n+window.location.search+window.location.hash);})();</script><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Race – Play Online Free | Rhythm Racing Game</title>
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Dash through vibrant tracks in Music Race, syncing every move to thrilling beats. Hit notes, dodge obstacles, and race to victory now!" />
+  <link rel="canonical" href="https://slopegame-game.github.io/music-race" />
+  <link rel="icon" href="./assets/favicon.webp" type="image/webp">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060b14;
+      --panel: rgba(12, 18, 30, 0.85);
+      --text: #e0eaff;
+      --muted: #7a8ba8;
+      --accent: #00e87b;
+      --accent2: #00c9ff;
+      --border: rgba(0, 232, 123, 0.12);
+      --border-subtle: rgba(255,255,255,0.06);
+      --radius: 20px;
+      --shadow: 0 10px 40px rgba(0,0,0,0.5);
+      --glow: 0 0 20px rgba(0, 232, 123, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.7; text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,232,123,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,201,255,0.06) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 84px 20px 50px; position: relative; z-index: 1; }
+
+    header.top {
+      position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+      display: flex; align-items: center; gap: 16px; padding: 10px 24px;
+      background: rgba(6, 11, 20, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; cursor: pointer; }
+    .appicon {
+      width: 40px; height: 40px; border-radius: 12px; overflow: hidden;
+      background: #0d1525; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 12px rgba(0,232,123,0.2); will-change: transform;
+      border: 1px solid var(--border);
+    }
+    .appicon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes logo-spin { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.12) rotate(360deg); } }
+    .brand:hover .appicon { animation: logo-spin .6s ease-out; }
+
+    .top-games { display: flex; gap: 10px; flex: 1; overflow: hidden; }
+    .top-games .quick-mod {
+      flex: 0 0 auto; background: rgba(0,232,123,0.06);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600;
+      white-space: nowrap; color: var(--text); text-decoration: none;
+      transition: all .25s ease;
+    }
+    .top-games .quick-mod:hover {
+      border-color: var(--accent); background: rgba(0,232,123,0.12);
+      box-shadow: 0 0 12px rgba(0,232,123,0.2);
+      transform: translateY(-1px); color: #fff;
+    }
+
+    .search-container { flex-shrink: 0; min-width: 260px; position: relative; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(0,232,123,0.05); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 22px; transition: all .25s ease; width: 100%;
+    }
+    .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,232,123,0.15); background: rgba(0,232,123,0.08); }
+    .search-icon { font-size: 15px; opacity: .7; }
+    .search-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 14px; width: 100%; font-family: 'Inter', sans-serif; }
+    .search-input::placeholder { color: var(--muted); }
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px;
+      background: rgba(10,16,28,0.97);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+      max-height: 300px; overflow-y: auto; display: none; z-index: 20;
+      scrollbar-width: thin; scrollbar-color: rgba(0,232,123,0.3) transparent;
+    }
+    .search-results::-webkit-scrollbar { width: 5px; }
+    .search-results::-webkit-scrollbar-track { background: transparent; }
+    .search-results::-webkit-scrollbar-thumb { background: rgba(0,232,123,0.3); border-radius: 10px; }
+    .search-item {
+      padding: 10px 14px; font-size: 14px; cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex; align-items: center; gap: 12px; transition: all .2s ease;
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(0,232,123,0.08); }
+    .search-thumb { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+    .search-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .player-card { padding: 16px 0 10px; position: relative; }
+    .player {
+      position: relative; width: 100%; background: #000;
+      border-radius: 24px; overflow: hidden; height: 530px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(0,232,123,0.08), 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .caption {
+      margin: 16px auto 0; background: var(--panel);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 12px 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px; box-shadow: var(--shadow);
+    }
+    .game-meta { display: flex; align-items: center; gap: 14px; }
+    .game-title h1 {
+      font-family: 'Orbitron', sans-serif; font-size: 20px; margin: 0;
+      font-weight: 700; color: #fff; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px;
+      border: 1px solid var(--border); background: rgba(0,232,123,0.06);
+      color: var(--text); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; cursor: pointer;
+      transition: all .25s ease;
+    }
+    .icon-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 18px rgba(0,232,123,0.4); border-color: var(--accent); }
+
+    .mods { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 14px; }
+    .mod {
+      position: relative; display: block; overflow: hidden;
+      border-radius: 14px; border: 2px solid var(--border);
+      background: rgba(12,18,30,0.7); transition: all .25s ease;
+    }
+    .mod::before { content: ""; display: block; padding-top: 100%; }
+    .mod img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .mod:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0,232,123,0.2), 0 12px 30px rgba(0,0,0,0.4); }
+    .mod:hover img { transform: scale(1.05); }
+    .mod-label {
+      position: absolute; left: 6px; right: 6px; bottom: 6px;
+      padding: 6px 8px; border-radius: 10px; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px); font-size: 12px; font-weight: 700;
+      text-align: center; font-family: 'Outfit', sans-serif;
+      opacity: 0; transition: all .25s ease; color: var(--accent);
+    }
+    .mod:hover .mod-label { opacity: 1; }
+
+    article.content {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px; margin-top: 24px; box-shadow: var(--shadow);
+    }
+    article.content p { margin-bottom: 18px; font-size: 16px; opacity: 0.92; line-height: 1.8; }
+    article.content a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; transition: all .2s; }
+    article.content a:hover { color: #fff; text-shadow: 0 0 12px var(--accent); }
+
+    article.content ul { list-style: none; padding-left: 0; margin-bottom: 22px; }
+    article.content li { position: relative; padding-left: 26px; margin-bottom: 12px; font-size: 15px; }
+    article.content li::before {
+      content: ""; position: absolute; left: 0; top: 10px;
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; box-shadow: 0 0 10px var(--accent);
+    }
+    article.content li strong { color: var(--accent); font-family: 'Outfit', sans-serif; }
+
+    .slope-title {
+      color: var(--accent); font-family: 'Orbitron', sans-serif;
+      font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+      margin: 36px 0 18px; text-shadow: 0 0 20px rgba(0,232,123,0.25); font-size: 26px;
+    }
+    .slope-subtitle {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; letter-spacing: 0.5px;
+      margin: 28px 0 14px; font-size: 20px; text-shadow: 0 0 12px rgba(0,232,123,0.3);
+    }
+
+    article.content table {
+      width: 100%; border-collapse: separate; border-spacing: 0; margin: 24px 0;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: rgba(0,0,0,0.25);
+    }
+    article.content thead { background: rgba(0,232,123,0.08); }
+    article.content th {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; text-transform: uppercase; font-size: 13px;
+      letter-spacing: 1px; padding: 16px 18px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    article.content td {
+      padding: 14px 18px; font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    article.content tr:last-child td { border-bottom: none; }
+    article.content tbody tr:hover td { background: rgba(0,232,123,0.04); }
+
+        .block {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+    .block h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .block h2::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 4px;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    footer {
+      margin-top: 36px; padding: 20px 0 24px;
+      text-align: center; color: var(--muted); font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) { .mods { grid-template-columns: repeat(4, 1fr); } .top-games { display: none; } article.content { padding: 24px; } }
+    @media (max-width: 600px) { .mods { grid-template-columns: repeat(2, 1fr); } .player { height: 300px; } article.content { padding: 18px; } .slope-title { font-size: 20px; } .slope-subtitle { font-size: 17px; } }
+  </style>
+
+  <meta property="og:title" content="Music Race" />
+  <meta property="og:description" content="Dash through vibrant tracks in Music Race, syncing every move to thrilling beats. Hit notes, dodge obstacles, and race to victory now!" />
+  <meta property="og:image" content="./assets/music-race.webp" />
+  <meta property="og:url" content="https://slopegame-game.github.io/music-race" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+    "@type": "VideoGame",
+    "name": "Music Race",
+    "description": "Dash through vibrant tracks in Music Race, syncing every move to thrilling beats. Hit notes, dodge obstacles, and race to victory now!",
+    "image": "https://slopegame-game.github.io/assets/music-race.webp",
+    "url": "https://slopegame-game.github.io/music-race",
+    "genre": ["Endless Runner", "3D", "Arcade"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Web Browser",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Slope Game Online"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "ratingCount": "16234"
+    }
+  },
+        {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://slopegame-game.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Music Race",
+        "item": "https://slopegame-game.github.io/music-race"
+      }
+    ]
+  }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ5FK8FYST"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HQ5FK8FYST');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/">
+        <span class="appicon">
+          <img src="./assets/slope-game.webp" alt="Slope Game - Play Online">
+        </span>
+      </a>
+      <div class="top-games">
+        <a class="quick-mod" href="./slope-multiplayer.html">Slope Multiplayer</a>
+        <a class="quick-mod" href="./epic-skater-2.html">Epic Skater 2</a>
+        <a class="quick-mod" href="./crazy-roll-3d.html">Crazy Roll 3D</a>
+        <a class="quick-mod" href="./run-3.html">Run 3</a>
+        <a class="quick-mod" href="./cookie-run-ovenbreak.html">Cookie Run: OvenBreak</a>
+        <a class="quick-mod" href="./temple-run-2-holi-festival.html">Temple Run 2: Holi Festival</a>
+      </div>
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search Games ..." class="search-input" id="game-search" aria-label="Search games">
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </header>
+    <section class="player-card" aria-label="Game player">
+      <div class="player" id="player-box"><iframe src="https://st.8games.net/9/8g/igra-muzykalnaya-gonka/" allow="autoplay; fullscreen; gamepad; accelerometer; gyroscope; clipboard-read; clipboard-write" loading="lazy" title="Music Race"></iframe></div>
+      <div class="caption">
+        <div class="game-meta"><span class="appicon"><img src="./assets/music-race.webp" alt="Music Race icon"></span><div class="game-title"><h1>Music Race</h1></div></div>
+        <button class="icon-btn" type="button" onclick="document.getElementById('player-box').requestFullscreen()" aria-label="Full screen">⛶</button>
+      </div>
+    </section>
+    <section class="block"><h2>Popular Slope Games</h2><div class="mods" id="game-grid"></div></section>
+    <article class="content">
+      <h2 class="slope-title">Music Race: Beat Racing GT</h2>
+      <h3 class="slope-subtitle">Rhythm-Powered Racing Experience</h3>
+      <p>Music Race delivers a one-of-a-kind racing adventure where the beats of your favorite songs dictate the pace. Players pilot sleek neon cars across vibrant, dynamic tracks that respond to music in real-time. Each turn, jump, and acceleration is synchronized to the rhythm, making the game both visually stunning and rhythmically engaging. Unlike traditional racing games, Music Race challenges players to blend precision driving with musical timing, creating a unique arcade experience where your reflexes and sense of rhythm are tested simultaneously.</p>
+      
+      <h3 class="slope-subtitle">Core Mechanics and Track Dynamics</h3>
+      <p>Tracks in Music Race are procedurally adapted to your selected music, meaning no two runs feel identical. Obstacles, ramps, and speed boosts appear in sync with the beat, forcing players to react quickly and anticipate rhythm-based patterns. Success depends on both reaction speed and musical intuition.</p>
+      <ul>
+        <li><strong>Beat Synchronization:</strong> The car’s movement aligns with the song’s rhythm for accelerated gameplay.</li>
+        <li><strong>Dynamic Obstacles:</strong> Moving barriers, spikes, and ramps require split-second decisions.</li>
+        <li><strong>Boost Collection:</strong> Crystals and power-ups grant temporary acceleration or defensive shields.</li>
+        <li><strong>Custom Music Tracks:</strong> Players can upload their own mp3 files for fully personalized challenges.</li>
+      </ul>
+
+      <h3 class="slope-subtitle">Feature Breakdown</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Platforms</td>
+            <td>PC, iOS, Android, Web Browser</td>
+          </tr>
+          <tr>
+            <td>Genre</td>
+            <td>Rhythm Racing, Arcade</td>
+          </tr>
+          <tr>
+            <td>Control Options</td>
+            <td>Mouse, Swipe (Mobile), Arrow Keys (Desktop)</td>
+          </tr>
+          <tr>
+            <td>Customization</td>
+            <td>Car skins, upgrades, and music track integration</td>
+          </tr>
+          <tr>
+            <td>Leaderboards</td>
+            <td>Global ranking and achievement system</td>
+          </tr>
+          <tr>
+            <td>Visual Style</td>
+            <td>Neon-lit tracks, pulsating lights, reactive animations</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="slope-subtitle">Skill Development and Strategies</h3>
+      <p>Playing Music Race requires more than fast fingers; it hones timing, reflexes, and multitasking. Players must learn to:</p>
+      <ul>
+        <li><strong>Anticipate Obstacles:</strong> Watch the track ahead and move according to rhythm cues.</li>
+        <li><strong>Optimize Boost Usage:</strong> Activate collected power-ups at precise moments to maintain lead.</li>
+        <li><strong>Master Track Patterns:</strong> Each song produces a unique course layout requiring adaptive strategies.</li>
+      </ul>
+
+      <h3 class="slope-subtitle">Controls</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 24px;">
+        <div style="background:rgba(0,232,123,0.06);border:1px solid var(--border);border-radius:16px;padding:22px 24px;">
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;">🖥️ Desktop</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,201,255,0.12);border:1px solid rgba(0,201,255,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent2);white-space:nowrap;">← / A</span><span style="opacity:0.85;">Move left</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,201,255,0.12);border:1px solid rgba(0,201,255,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent2);white-space:nowrap;">→ / D</span><span style="opacity:0.85;">Move right</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,201,255,0.12);border:1px solid rgba(0,201,255,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent2);white-space:nowrap;">Mouse</span><span style="opacity:0.85;">Fine steering</span></div>
+          </div>
+        </div>
+        <div style="background:rgba(0,201,255,0.06);border:1px solid rgba(0,201,255,0.12);border-radius:16px;padding:22px 24px;">
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;">📱 Mobile</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,232,123,0.12);border:1px solid rgba(0,232,123,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent);white-space:nowrap;">Swipe ←</span><span style="opacity:0.85;">Steer left</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,232,123,0.12);border:1px solid rgba(0,232,123,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent);white-space:nowrap;">Swipe →</span><span style="opacity:0.85;">Steer right</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="background:rgba(0,232,123,0.12);border:1px solid rgba(0,232,123,0.25);border-radius:8px;padding:4px 12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--accent);white-space:nowrap;">Tap</span><span style="opacity:0.85;">Activate boosts</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="slope-subtitle">Why Music Race Stands Out</h3>
+      <p>Music Race transforms traditional racing into a music-driven arcade adventure. Unlike other racers, it integrates rhythm into every aspect: movement, obstacle timing, and bonus placement. Players can express personal taste by uploading music, turning their favorite songs into challenging tracks. The combination of neon visuals, pulsating effects, and beat-synced gameplay ensures an immersive experience that keeps players returning for new challenges.</p>
+
+      <h2 class="slope-title">Related Games to Try</h2>
+      <ul>
+        <li>Try <a href="./slope-2.html">Slope 2</a> for high-speed ball rolling challenges.</li>
+        <li>Explore <a href="./slope-bike-2.html">Slope Bike 2</a> for rooftop racing thrills.</li>
+        <li>Experiment with custom tracks in <a href="./music-race.html">Music Race</a> to create endless variations.</li>
+      </ul>
+
+      <p>Music Race: Beat Racing GT is more than a game—it’s a test of reflexes, timing, and rhythm. Every run offers a fresh challenge, blending music and speed into an electrifying racing experience.</p>
+    </article>
+    <footer><p>© 2026 Slope Game Online — Unblocked 3D Running Game.</p></footer>
+  </div>
+  <script>
+    const games = [{title:"Slope Game",href:"/",img:"./assets/slope-game.webp"},{title:"Slope 2",href:"./slope-2",img:"./assets/slope-2.webp"},{title:"Slope Bike 2",href:"./slope-bike-2",img:"./assets/slope-bike-2.webp"},{title:"Slope Snowball",href:"./slope-snowball",img:"./assets/slope-snowball.webp"},{title:"Music Race",href:"./music-race",img:"./assets/music-race.webp"},{title:"Horizon",href:"./horizon",img:"./assets/horizon.webp"},{title:"Tunnel Rush",href:"./tunnel-rush",img:"./assets/tunnel-rush.webp"},{title:"Slope 3",href:"./slope-3",img:"./assets/slope-3.webp"},{title:"Slope Multiplayer",href:"./slope-multiplayer",img:"./assets/slope-multiplayer.webp"},{title:"Slope Tunnel",href:"./slope-tunnel",img:"./assets/slope-tunnel.webp"},{title:"Epic Skater 2",href:"./epic-skater-2",img:"./assets/epic-skater-2.webp"},{title:"Crazy Roll 3D",href:"./crazy-roll-3d",img:"./assets/crazy-roll-3d.webp"},{title:"Run 3",href:"./run-3",img:"./assets/RUN-3.webp"},{title:"Cookie Run: OvenBreak",href:"./cookie-run-ovenbreak",img:"./assets/cookie-run-ovenbreak.webp"},{title:"Temple Run 2: Holi Festival",href:"./temple-run-2-holi-festival",img:"./assets/temple-run-2-holi-festival.webp"}];
+    function render(){
+      const g=document.getElementById('game-grid');games.slice(0, 8).forEach(x=>{const a=document.createElement('a');a.className='mod';a.href=x.href;a.innerHTML=`<img src="${x.img}" alt="${x.title}"><div class="mod-label">${x.title}</div>`;g.appendChild(a);});
+      const i=document.querySelector('.search-input'),r=document.getElementById('search-results');i.oninput=()=>{const q=i.value.toLowerCase();r.innerHTML='';if(!q){r.style.display='none';return;}const m=games.filter(x=>x.title.toLowerCase().includes(q));m.forEach(x=>{const d=document.createElement('div');d.className='search-item';d.innerHTML=`<div class="search-thumb"><img src="${x.img}"></div><div>${x.title}</div>`;d.onclick=()=>location.href=x.href;r.appendChild(d);});r.style.display='block';};
+    }document.addEventListener('DOMContentLoaded',render);
+  </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var p=window.location.pathname;var n=p.replace(/\/+/g,'/').replace(/\.html$/,'');if(n.length>1&&n.endsWith('/'))n=n.slice(0,-1);if(n!==p)window.history.replaceState(null,'',n+window.location.search+window.location.hash);})();</script><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slope 3 – Play Online Free | 3D Endless Runner</title>
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Navigate thrilling slopes and dodge obstacles in Slope 3, an endless runner packed with speed and challenges. Push your limits and beat every level now!" />
+  <link rel="canonical" href="https://slopegame-game.github.io/slope-3" />
+  <link rel="icon" href="./assets/favicon.webp" type="image/webp">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060b14;
+      --panel: rgba(12, 18, 30, 0.85);
+      --text: #e0eaff;
+      --muted: #7a8ba8;
+      --accent: #00e87b;
+      --accent2: #00c9ff;
+      --border: rgba(0, 232, 123, 0.12);
+      --border-subtle: rgba(255,255,255,0.06);
+      --radius: 20px;
+      --shadow: 0 10px 40px rgba(0,0,0,0.5);
+      --glow: 0 0 20px rgba(0, 232, 123, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.7; text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,232,123,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,201,255,0.06) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 84px 20px 50px; position: relative; z-index: 1; }
+
+    header.top {
+      position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+      display: flex; align-items: center; gap: 16px; padding: 10px 24px;
+      background: rgba(6, 11, 20, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; cursor: pointer; }
+    .appicon {
+      width: 40px; height: 40px; border-radius: 12px; overflow: hidden;
+      background: #0d1525; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 12px rgba(0,232,123,0.2); will-change: transform;
+      border: 1px solid var(--border);
+    }
+    .appicon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes logo-spin { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.12) rotate(360deg); } }
+    .brand:hover .appicon { animation: logo-spin .6s ease-out; }
+
+    .top-games { display: flex; gap: 10px; flex: 1; overflow: hidden; }
+    .top-games .quick-mod {
+      flex: 0 0 auto; background: rgba(0,232,123,0.06);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600;
+      white-space: nowrap; color: var(--text); text-decoration: none;
+      transition: all .25s ease;
+    }
+    .top-games .quick-mod:hover {
+      border-color: var(--accent); background: rgba(0,232,123,0.12);
+      box-shadow: 0 0 12px rgba(0,232,123,0.2);
+      transform: translateY(-1px); color: #fff;
+    }
+
+    .search-container { flex-shrink: 0; min-width: 260px; position: relative; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(0,232,123,0.05); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 22px; transition: all .25s ease; width: 100%;
+    }
+    .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,232,123,0.15); background: rgba(0,232,123,0.08); }
+    .search-icon { font-size: 15px; opacity: .7; }
+    .search-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 14px; width: 100%; font-family: 'Inter', sans-serif; }
+    .search-input::placeholder { color: var(--muted); }
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px;
+      background: rgba(10,16,28,0.97);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+      max-height: 300px; overflow-y: auto; display: none; z-index: 20;
+      scrollbar-width: thin; scrollbar-color: rgba(0,232,123,0.3) transparent;
+    }
+    .search-results::-webkit-scrollbar { width: 5px; }
+    .search-results::-webkit-scrollbar-track { background: transparent; }
+    .search-results::-webkit-scrollbar-thumb { background: rgba(0,232,123,0.3); border-radius: 10px; }
+    .search-item {
+      padding: 10px 14px; font-size: 14px; cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex; align-items: center; gap: 12px; transition: all .2s ease;
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(0,232,123,0.08); }
+    .search-thumb { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+    .search-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .player-card { padding: 16px 0 10px; position: relative; }
+    .player {
+      position: relative; width: 100%; background: #000;
+      border-radius: 24px; overflow: hidden; height: 530px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(0,232,123,0.08), 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .caption {
+      margin: 16px auto 0; background: var(--panel);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 12px 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px; box-shadow: var(--shadow);
+    }
+    .game-meta { display: flex; align-items: center; gap: 14px; }
+    .game-title h1 {
+      font-family: 'Orbitron', sans-serif; font-size: 20px; margin: 0;
+      font-weight: 700; color: #fff; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px;
+      border: 1px solid var(--border); background: rgba(0,232,123,0.06);
+      color: var(--text); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; cursor: pointer;
+      transition: all .25s ease;
+    }
+    .icon-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 18px rgba(0,232,123,0.4); border-color: var(--accent); }
+
+    .mods { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 14px; }
+    .mod {
+      position: relative; display: block; overflow: hidden;
+      border-radius: 14px; border: 2px solid var(--border);
+      background: rgba(12,18,30,0.7); transition: all .25s ease;
+    }
+    .mod::before { content: ""; display: block; padding-top: 100%; }
+    .mod img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .mod:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0,232,123,0.2), 0 12px 30px rgba(0,0,0,0.4); }
+    .mod:hover img { transform: scale(1.05); }
+    .mod-label {
+      position: absolute; left: 6px; right: 6px; bottom: 6px;
+      padding: 6px 8px; border-radius: 10px; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px); font-size: 12px; font-weight: 700;
+      text-align: center; font-family: 'Outfit', sans-serif;
+      opacity: 0; transition: all .25s ease; color: var(--accent);
+    }
+    .mod:hover .mod-label { opacity: 1; }
+
+    article.content {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px; margin-top: 24px; box-shadow: var(--shadow);
+    }
+    article.content p { margin-bottom: 18px; font-size: 16px; opacity: 0.92; line-height: 1.8; }
+    article.content a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; transition: all .2s; }
+    article.content a:hover { color: #fff; text-shadow: 0 0 12px var(--accent); }
+
+    article.content ul { list-style: none; padding-left: 0; margin-bottom: 22px; }
+    article.content li { position: relative; padding-left: 26px; margin-bottom: 12px; font-size: 15px; }
+    article.content li::before {
+      content: ""; position: absolute; left: 0; top: 10px;
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; box-shadow: 0 0 10px var(--accent);
+    }
+    article.content li strong { color: var(--accent); font-family: 'Outfit', sans-serif; }
+
+    .slope-title {
+      color: var(--accent); font-family: 'Orbitron', sans-serif;
+      font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+      margin: 36px 0 18px; text-shadow: 0 0 20px rgba(0,232,123,0.25); font-size: 26px;
+    }
+    .slope-subtitle {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; letter-spacing: 0.5px;
+      margin: 28px 0 14px; font-size: 20px; text-shadow: 0 0 12px rgba(0,232,123,0.3);
+    }
+
+    article.content table {
+      width: 100%; border-collapse: separate; border-spacing: 0; margin: 24px 0;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: rgba(0,0,0,0.25);
+    }
+    article.content thead { background: rgba(0,232,123,0.08); }
+    article.content th {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; text-transform: uppercase; font-size: 13px;
+      letter-spacing: 1px; padding: 16px 18px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    article.content td {
+      padding: 14px 18px; font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    article.content tr:last-child td { border-bottom: none; }
+    article.content tbody tr:hover td { background: rgba(0,232,123,0.04); }
+
+        .block {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+    .block h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .block h2::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 4px;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    footer {
+      margin-top: 36px; padding: 20px 0 24px;
+      text-align: center; color: var(--muted); font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) { .mods { grid-template-columns: repeat(4, 1fr); } .top-games { display: none; } article.content { padding: 24px; } }
+    @media (max-width: 600px) { .mods { grid-template-columns: repeat(2, 1fr); } .player { height: 300px; } article.content { padding: 18px; } .slope-title { font-size: 20px; } .slope-subtitle { font-size: 17px; } }
+  </style>
+
+  <meta property="og:title" content="Slope 3" />
+  <meta property="og:description" content="Navigate thrilling slopes and dodge obstacles in Slope 3, an endless runner packed with speed and challenges. Push your limits and beat every level now!" />
+  <meta property="og:image" content="./assets/slope-3.webp" />
+  <meta property="og:url" content="https://slopegame-game.github.io/slope-3" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+      <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "name": "Slope 3",
+        "description": "Navigate thrilling slopes and dodge obstacles in Slope 3, an endless runner packed with speed and challenges. Push your limits and beat every level now!",
+        "image": "https://slopegame-game.github.io/assets/slope-3.webp",
+        "url": "https://slopegame-game.github.io/slope-3",
+        "genre": ["Endless Runner", "3D", "Arcade"],
+        "applicationCategory": "Game",
+        "operatingSystem": "Web Browser",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Slope Game Online"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "ratingCount": "18987"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://slopegame-game.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Slope 3",
+            "item": "https://slopegame-game.github.io/slope-3"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do you win Slope 3?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is no finish line. Winning means achieving the highest score possible by keeping the ball rolling safely for as long as you can."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a good score in Slope 3?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A score over 300 is considered high for most players. Experienced players can exceed 500 points."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When was Slope 3 released?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Slope 3 is the latest installment following Slope and Slope 2, bringing enhanced graphics and gameplay."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I play Slope 3 on mobile devices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it runs on all modern mobile browsers without downloads."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there cheats or power-ups?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Slope 3 relies entirely on skill. There are no in-game cheats or power-ups to extend gameplay."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ5FK8FYST"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HQ5FK8FYST');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/">
+        <span class="appicon">
+          <img src="./assets/slope-game.webp" alt="Slope Game - Play Online">
+        </span>
+      </a>
+      <div class="top-games">
+        <a class="quick-mod" href="./slope-multiplayer.html">Slope Multiplayer</a>
+        <a class="quick-mod" href="./epic-skater-2.html">Epic Skater 2</a>
+        <a class="quick-mod" href="./crazy-roll-3d.html">Crazy Roll 3D</a>
+        <a class="quick-mod" href="./run-3.html">Run 3</a>
+        <a class="quick-mod" href="./cookie-run-ovenbreak.html">Cookie Run: OvenBreak</a>
+        <a class="quick-mod" href="./temple-run-2-holi-festival.html">Temple Run 2: Holi Festival</a>
+      </div>
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search Games ..." class="search-input" id="game-search" aria-label="Search games">
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </header>
+    <section class="player-card" aria-label="Game player">
+      <div class="player" id="player-box"><iframe src="https://kdata1.com/2024/03/slope-kbh/" allow="autoplay; fullscreen; gamepad; accelerometer; gyroscope; clipboard-read; clipboard-write" loading="lazy" title="Slope 3"></iframe></div>
+      <div class="caption">
+        <div class="game-meta"><span class="appicon"><img src="./assets/slope-3.webp" alt="Slope 3 icon"></span><div class="game-title"><h1>Slope 3</h1></div></div>
+        <button class="icon-btn" type="button" onclick="document.getElementById('player-box').requestFullscreen()" aria-label="Full screen">⛶</button>
+      </div>
+    </section>
+    <section class="block"><h2>Popular Slope Games</h2><div class="mods" id="game-grid"></div></section>
+    <article class="content">
+      <h2 class="slope-title">Introduction to Slope 3</h2>
+      <p>Slope 3 is an exciting 3D endless runner game where players control a ball rolling along neon-colored slopes that twist and turn endlessly. The game challenges reflexes and concentration as the ball continuously increases its speed while players navigate through various obstacles.</p>
+      <p>Inspired by the concept of slope in mathematics, the game uses realistic inclines to create a sense of acceleration and precise movement. Every slope and turn demands careful timing, making each run a test of focus and skill.</p>
+
+      <h3 class="slope-subtitle">How to Play Slope 3</h3>
+      <h3 class="slope-subtitle">Basic Gameplay</h3>
+      <ul>
+        <li>The ball moves forward automatically along neon slopes</li>
+        <li>Players steer the ball left or right using keyboard keys on PC or swipes on mobile devices</li>
+        <li>Avoid red obstacles and gaps to prevent falling off the track</li>
+        <li>The course is endless, so the goal is to reach the highest possible score</li>
+      </ul>
+
+      <h3 class="slope-subtitle">Tips for Success</h3>
+      <ul>
+        <li>Keep the ball near the center of the track for better reaction time</li>
+        <li>Avoid unnecessary oversteering to prevent accidental falls</li>
+        <li>Adapt to increasing speed as the game progresses</li>
+        <li>Practice frequently to develop muscle memory and improve reflexes</li>
+      </ul>
+
+      <h3 class="slope-subtitle">Controls</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PC</td>
+            <td>Arrow keys or A/D to move left or right</td>
+          </tr>
+          <tr>
+            <td>Mobile</td>
+            <td>Swipe left or right on the screen</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="slope-subtitle">Features of Slope 3</h3>
+      <ul>
+        <li>Smooth and realistic 3D neon graphics</li>
+        <li>Endless running course with unpredictable track layouts</li>
+        <li>Increasing speed and difficulty over time</li>
+        <li>Competitive leaderboards for high scores</li>
+        <li>Simple yet challenging gameplay requiring focus and strategy</li>
+      </ul>
+
+      <h3 class="slope-subtitle">Obstacles Overview</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Obstacle Name</th>
+            <th>Difficulty</th>
+            <th>Tips</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>RNG Blocks</td><td>Easy</td><td>Steer slightly left, right, or center</td></tr>
+          <tr><td>Slants</td><td>Hard</td><td>Adjust movement according to slope direction</td></tr>
+          <tr><td>Straights</td><td>Easy</td><td>Keep ball centered to roll forward</td></tr>
+          <tr><td>Treblocks</td><td>Hard</td><td>Navigate through narrow paths</td></tr>
+          <tr><td>Tunnels</td><td>Hard</td><td>Maintain center to roll straight through</td></tr>
+          <tr><td>Snakes</td><td>Medium</td><td>Slightly shift left to pass curves</td></tr>
+          <tr><td>Hors</td><td>Easy</td><td>Move opposite to block movement</td></tr>
+          <tr><td>Verts</td><td>Medium</td><td>Avoid rising blocks by moving into empty spaces</td></tr>
+          <tr><td>Speedtunnels</td><td>Easy</td><td>Use momentum to jump over if possible</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="slope-title">Comparison with Related Games</h2>
+      <h3 class="slope-subtitle">Endless Runner Comparisons</h3>
+      <ul>
+        <li><a href="./tunnel-rush.html">Tunnel Rush</a> &#x2013; Features colorful spinning tunnels and fast-paced obstacles</li>
+        <li><a href="./run-3.html">Run 3</a> &#x2013; Includes floating platforms in space requiring strategic movement</li>
+        <li><a href="./slope-2.html">Slope 2</a> &#x2013; The predecessor, with simpler graphics and slightly slower speed</li>
+      </ul>
+      <p>Slope 3 stands out for its neon visuals, unpredictable obstacle patterns, and fast-paced gameplay that rewards advanced reflexes and strategic thinking.</p>
+
+      <h3 class="slope-subtitle">Personal Experience Insights</h3>
+      <p>Many players initially struggle to keep the ball on track for more than a few seconds. With practice, control improves, and higher scores become achievable. The energetic music adds intensity, making each run more thrilling and encouraging repeated attempts to beat personal records.</p>
+
+      <h2 class="slope-title">FAQs</h2>
+      <p><strong>How do you win Slope 3?</strong><br> There is no finish line. Winning means achieving the highest score possible by keeping the ball rolling safely for as long as you can.</p>
+      <p><strong>What is a good score in Slope 3?</strong><br> A score over 300 is considered high for most players. Experienced players can exceed 500 points.</p>
+      <p><strong>When was Slope 3 released?</strong><br> Slope 3 is the latest installment following Slope and Slope 2, bringing enhanced graphics and gameplay.</p>
+      <p><strong>Can I play Slope 3 on mobile devices?</strong><br> Yes, it runs on all modern mobile browsers without downloads.</p>
+      <p><strong>Are there cheats or power-ups?</strong><br> Slope 3 relies entirely on skill. There are no in-game cheats or power-ups to extend gameplay.</p>
+
+      <h2 class="slope-title">Start Your Slope 3 Adventure</h2>
+      <p>Slope 3 provides a fast-paced, challenging, and visually striking endless runner experience. Players must focus, plan ahead, and react quickly to navigate neon slopes and overcome obstacles. For additional fun and challenge, you can explore similar games such as <a href="./tunnel-rush.html">Tunnel Rush</a> or <a href="./run-3.html">Run 3</a> to experience other endless runner mechanics.</p>
+      <p>Roll your ball, anticipate every turn, and aim to climb the leaderboard with your highest score. The adventure in Slope 3 never ends, and every run is a chance to improve your skills and reaction time.</p>
+    </article>
+    <footer><p>© 2026 Slope Game Online — Unblocked 3D Running Game.</p></footer>
+  </div>
+  <script>
+    const games = [{title:"Slope Game",href:"/",img:"./assets/slope-game.webp"},{title:"Slope 2",href:"./slope-2",img:"./assets/slope-2.webp"},{title:"Slope Bike 2",href:"./slope-bike-2",img:"./assets/slope-bike-2.webp"},{title:"Slope Snowball",href:"./slope-snowball",img:"./assets/slope-snowball.webp"},{title:"Music Race",href:"./music-race",img:"./assets/music-race.webp"},{title:"Horizon",href:"./horizon",img:"./assets/horizon.webp"},{title:"Tunnel Rush",href:"./tunnel-rush",img:"./assets/tunnel-rush.webp"},{title:"Slope 3",href:"./slope-3",img:"./assets/slope-3.webp"},{title:"Slope Multiplayer",href:"./slope-multiplayer",img:"./assets/slope-multiplayer.webp"},{title:"Slope Tunnel",href:"./slope-tunnel",img:"./assets/slope-tunnel.webp"},{title:"Epic Skater 2",href:"./epic-skater-2",img:"./assets/epic-skater-2.webp"},{title:"Crazy Roll 3D",href:"./crazy-roll-3d",img:"./assets/crazy-roll-3d.webp"},{title:"Run 3",href:"./run-3",img:"./assets/RUN-3.webp"},{title:"Cookie Run: OvenBreak",href:"./cookie-run-ovenbreak",img:"./assets/cookie-run-ovenbreak.webp"},{title:"Temple Run 2: Holi Festival",href:"./temple-run-2-holi-festival",img:"./assets/temple-run-2-holi-festival.webp"}];
+    function render(){
+      const g=document.getElementById('game-grid');games.slice(0, 8).forEach(x=>{const a=document.createElement('a');a.className='mod';a.href=x.href;a.innerHTML=`<img src="${x.img}" alt="${x.title}"><div class="mod-label">${x.title}</div>`;g.appendChild(a);});
+      const i=document.querySelector('.search-input'),r=document.getElementById('search-results');i.oninput=()=>{const q=i.value.toLowerCase();r.innerHTML='';if(!q){r.style.display='none';return;}const m=games.filter(x=>x.title.toLowerCase().includes(q));m.forEach(x=>{const d=document.createElement('div');d.className='search-item';d.innerHTML=`<div class="search-thumb"><img src="${x.img}"></div><div>${x.title}</div>`;d.onclick=()=>location.href=x.href;r.appendChild(d);});r.style.display='block';};
+    }document.addEventListener('DOMContentLoaded',render);
+  </script>
+</body>
+</html>

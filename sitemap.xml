@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc>https://slopegame-game.github.io/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url><loc>https://slopegame-game.github.io/slope-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-bike-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-snowball.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/music-race.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/horizon.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/tunnel-rush.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-3.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-multiplayer.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-tunnel.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/epic-skater-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/crazy-roll-3d.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/run-3.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/cookie-run-ovenbreak.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/temple-run-2-holi-festival.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+</urlset>

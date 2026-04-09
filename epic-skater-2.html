@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var p=window.location.pathname;var n=p.replace(/\/+/g,'/').replace(/\.html$/,'');if(n.length>1&&n.endsWith('/'))n=n.slice(0,-1);if(n!==p)window.history.replaceState(null,'',n+window.location.search+window.location.hash);})();</script><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Epic Skater 2 – Play Online Free | Skateboard Runner</title>
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Enjoy thrilling skateboarding tricks and jumps in Epic Skater 2, an endless runner full of ramps and obstacles. Show off your skills now!" />
+  <link rel="canonical" href="https://slopegame-game.github.io/epic-skater-2" />
+  <link rel="icon" href="./assets/favicon.webp" type="image/webp">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060b14;
+      --panel: rgba(12, 18, 30, 0.85);
+      --text: #e0eaff;
+      --muted: #7a8ba8;
+      --accent: #00e87b;
+      --accent2: #00c9ff;
+      --border: rgba(0, 232, 123, 0.12);
+      --border-subtle: rgba(255,255,255,0.06);
+      --radius: 20px;
+      --shadow: 0 10px 40px rgba(0,0,0,0.5);
+      --glow: 0 0 20px rgba(0, 232, 123, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.7; text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,232,123,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,201,255,0.06) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 84px 20px 50px; position: relative; z-index: 1; }
+
+    header.top {
+      position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+      display: flex; align-items: center; gap: 16px; padding: 10px 24px;
+      background: rgba(6, 11, 20, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; cursor: pointer; }
+    .appicon {
+      width: 40px; height: 40px; border-radius: 12px; overflow: hidden;
+      background: #0d1525; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 12px rgba(0,232,123,0.2); will-change: transform;
+      border: 1px solid var(--border);
+    }
+    .appicon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes logo-spin { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.12) rotate(360deg); } }
+    .brand:hover .appicon { animation: logo-spin .6s ease-out; }
+
+    .top-games { display: flex; gap: 10px; flex: 1; overflow: hidden; }
+    .top-games .quick-mod {
+      flex: 0 0 auto; background: rgba(0,232,123,0.06);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600;
+      white-space: nowrap; color: var(--text); text-decoration: none;
+      transition: all .25s ease;
+    }
+    .top-games .quick-mod:hover {
+      border-color: var(--accent); background: rgba(0,232,123,0.12);
+      box-shadow: 0 0 12px rgba(0,232,123,0.2);
+      transform: translateY(-1px); color: #fff;
+    }
+
+    .search-container { flex-shrink: 0; min-width: 260px; position: relative; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(0,232,123,0.05); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 22px; transition: all .25s ease; width: 100%;
+    }
+    .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,232,123,0.15); background: rgba(0,232,123,0.08); }
+    .search-icon { font-size: 15px; opacity: .7; }
+    .search-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 14px; width: 100%; font-family: 'Inter', sans-serif; }
+    .search-input::placeholder { color: var(--muted); }
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px;
+      background: rgba(10,16,28,0.97);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+      max-height: 300px; overflow-y: auto; display: none; z-index: 20;
+      scrollbar-width: thin; scrollbar-color: rgba(0,232,123,0.3) transparent;
+    }
+    .search-results::-webkit-scrollbar { width: 5px; }
+    .search-results::-webkit-scrollbar-track { background: transparent; }
+    .search-results::-webkit-scrollbar-thumb { background: rgba(0,232,123,0.3); border-radius: 10px; }
+    .search-item {
+      padding: 10px 14px; font-size: 14px; cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex; align-items: center; gap: 12px; transition: all .2s ease;
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(0,232,123,0.08); }
+    .search-thumb { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+    .search-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .player-card { padding: 16px 0 10px; position: relative; }
+    .player {
+      position: relative; width: 100%; background: #000;
+      border-radius: 24px; overflow: hidden; height: 530px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(0,232,123,0.08), 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .caption {
+      margin: 16px auto 0; background: var(--panel);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 12px 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px; box-shadow: var(--shadow);
+    }
+    .game-meta { display: flex; align-items: center; gap: 14px; }
+    .game-title h1 {
+      font-family: 'Orbitron', sans-serif; font-size: 20px; margin: 0;
+      font-weight: 700; color: #fff; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px;
+      border: 1px solid var(--border); background: rgba(0,232,123,0.06);
+      color: var(--text); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; cursor: pointer;
+      transition: all .25s ease;
+    }
+    .icon-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 18px rgba(0,232,123,0.4); border-color: var(--accent); }
+
+    .mods { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 14px; }
+    .mod {
+      position: relative; display: block; overflow: hidden;
+      border-radius: 14px; border: 2px solid var(--border);
+      background: rgba(12,18,30,0.7); transition: all .25s ease;
+    }
+    .mod::before { content: ""; display: block; padding-top: 100%; }
+    .mod img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .mod:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0,232,123,0.2), 0 12px 30px rgba(0,0,0,0.4); }
+    .mod:hover img { transform: scale(1.05); }
+    .mod-label {
+      position: absolute; left: 6px; right: 6px; bottom: 6px;
+      padding: 6px 8px; border-radius: 10px; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px); font-size: 12px; font-weight: 700;
+      text-align: center; font-family: 'Outfit', sans-serif;
+      opacity: 0; transition: all .25s ease; color: var(--accent);
+    }
+    .mod:hover .mod-label { opacity: 1; }
+
+    article.content {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px; margin-top: 24px; box-shadow: var(--shadow);
+    }
+    article.content p { margin-bottom: 18px; font-size: 16px; opacity: 0.92; line-height: 1.8; }
+    article.content a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; transition: all .2s; }
+    article.content a:hover { color: #fff; text-shadow: 0 0 12px var(--accent); }
+
+    article.content ul { list-style: none; padding-left: 0; margin-bottom: 22px; }
+    article.content li { position: relative; padding-left: 26px; margin-bottom: 12px; font-size: 15px; }
+    article.content li::before {
+      content: ""; position: absolute; left: 0; top: 10px;
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; box-shadow: 0 0 10px var(--accent);
+    }
+    article.content li strong { color: var(--accent); font-family: 'Outfit', sans-serif; }
+
+    .slope-title {
+      color: var(--accent); font-family: 'Orbitron', sans-serif;
+      font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+      margin: 36px 0 18px; text-shadow: 0 0 20px rgba(0,232,123,0.25); font-size: 26px;
+    }
+    .slope-subtitle {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; letter-spacing: 0.5px;
+      margin: 28px 0 14px; font-size: 20px; text-shadow: 0 0 12px rgba(0,232,123,0.3);
+    }
+
+    article.content table {
+      width: 100%; border-collapse: separate; border-spacing: 0; margin: 24px 0;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: rgba(0,0,0,0.25);
+    }
+    article.content thead { background: rgba(0,232,123,0.08); }
+    article.content th {
+      color: var(--accent); font-family: 'Outfit', sans-serif;
+      font-weight: 700; text-transform: uppercase; font-size: 13px;
+      letter-spacing: 1px; padding: 16px 18px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    article.content td {
+      padding: 14px 18px; font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    article.content tr:last-child td { border-bottom: none; }
+    article.content tbody tr:hover td { background: rgba(0,232,123,0.04); }
+
+        .block {
+      background: var(--panel);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+    .block h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .block h2::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 4px;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    footer {
+      margin-top: 36px; padding: 20px 0 24px;
+      text-align: center; color: var(--muted); font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) { .mods { grid-template-columns: repeat(4, 1fr); } .top-games { display: none; } article.content { padding: 24px; } }
+    @media (max-width: 600px) { .mods { grid-template-columns: repeat(2, 1fr); } .player { height: 300px; } article.content { padding: 18px; } .slope-title { font-size: 20px; } .slope-subtitle { font-size: 17px; } }
+  </style>
+
+  <meta property="og:title" content="Epic Skater 2" />
+  <meta property="og:description" content="Enjoy thrilling skateboarding tricks and jumps in Epic Skater 2, an endless runner full of ramps and obstacles. Show off your skills now!" />
+  <meta property="og:image" content="./assets/epic-skater-2.webp" />
+  <meta property="og:url" content="https://slopegame-game.github.io/epic-skater-2" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+    "@type": "VideoGame",
+    "name": "Epic Skater 2",
+    "description": "Enjoy thrilling skateboarding tricks and jumps in Epic Skater 2, an endless runner full of ramps and obstacles. Show off your skills now!",
+    "image": "https://slopegame-game.github.io/assets/epic-skater-2.webp",
+    "url": "https://slopegame-game.github.io/epic-skater-2",
+    "genre": ["Endless Runner", "3D", "Arcade"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Web Browser",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Slope Game Online"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "ratingCount": "15321"
+    }
+  },
+        {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://slopegame-game.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Epic Skater 2",
+        "item": "https://slopegame-game.github.io/epic-skater-2"
+      }
+    ]
+  }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ5FK8FYST"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HQ5FK8FYST');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/">
+        <span class="appicon">
+          <img src="./assets/slope-game.webp" alt="Slope Game - Play Online">
+        </span>
+      </a>
+      <div class="top-games">
+        <a class="quick-mod" href="./slope-multiplayer.html">Slope Multiplayer</a>
+        <a class="quick-mod" href="./epic-skater-2.html">Epic Skater 2</a>
+        <a class="quick-mod" href="./crazy-roll-3d.html">Crazy Roll 3D</a>
+        <a class="quick-mod" href="./run-3.html">Run 3</a>
+        <a class="quick-mod" href="./cookie-run-ovenbreak.html">Cookie Run: OvenBreak</a>
+        <a class="quick-mod" href="./temple-run-2-holi-festival.html">Temple Run 2: Holi Festival</a>
+      </div>
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search Games ..." class="search-input" id="game-search" aria-label="Search games">
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </header>
+    <section class="player-card" aria-label="Game player">
+      <div class="player" id="player-box"><iframe src="https://www.madkidgames.com/full/epic-skater-2" allow="autoplay; fullscreen; gamepad; accelerometer; gyroscope; clipboard-read; clipboard-write" loading="lazy" title="Epic Skater 2"></iframe></div>
+      <div class="caption">
+        <div class="game-meta"><span class="appicon"><img src="./assets/epic-skater-2.webp" alt="Epic Skater 2 icon"></span><div class="game-title"><h1>Epic Skater 2</h1></div></div>
+        <button class="icon-btn" type="button" onclick="document.getElementById('player-box').requestFullscreen()" aria-label="Full screen">⛶</button>
+      </div>
+    </section>
+    <section class="block"><h2>Popular Slope Games</h2><div class="mods" id="game-grid"></div></section>
+    <article class="content">
+      <h2 class="slope-title">Epic Skater 2 &#x2013; Master Your Skateboard Combos</h2>
+      <p>Epic Skater 2 is a fast-paced online skateboarding game where players chain together complex tricks across the bustling city of Epicwood. The game emphasizes skillful combo execution, exploration, and continuous progression for anyone aiming to dominate the leaderboards.</p>
+
+      <h3 class="slope-subtitle">Customize Your Skater</h3>
+      <p>Before hitting the streets, players can design their ideal skater using the extensive Create-A-Skater system. With over 600 clothing items and accessories, the combinations are nearly limitless. Completing daily challenges unlocks exclusive gear, allowing each player to express their own style while boosting performance.</p>
+
+      <h3 class="slope-subtitle">Explore Epicwood and Upgrade Tricks</h3>
+      <p>Epicwood encourages vertical and horizontal exploration, from street-level ramps to rooftop half-pipes and subway tunnels. Over 44 upgradeable tricks are available, including flips, grabs, grinds, acid drops, spine transfers, wallplants, and extended grabs. Strategically chaining these maneuvers not only maximizes your score but also uncovers hidden areas and boost pads to maintain speed during long combos.</p>
+
+      <h3 class="slope-subtitle">Gameplay Modes</h3>
+      <p><strong>Career Mode</strong> challenges players through 40 levels with objectives that test timing, precision, and combo mastery.</p>
+      <p><strong>Endless Mode</strong> removes level limits and focuses on sustained performance. It includes 11 progression tiers and over 1,600 goals, ideal for breaking distance records or perfecting extended trick sequences.</p>
+
+      <h3 class="slope-subtitle">Game Controls</h3>
+      <p><strong>PC:</strong> Arrow keys or movement keys for direction; mouse click/hold for tricks and grabs.</p>
+      <p><strong>Mobile/Tablet:</strong> Swipe to move, touch-and-hold for grabs, and on-screen buttons for boost pads and other actions.</p>
+      <p>Maintaining speed and precision is essential to keeping combo chains alive and scoring high.</p>
+
+      <h3 class="slope-subtitle">Tips for High Scores</h3>
+      <p>Focus on linking tricks smoothly rather than rushing. Observe the environment to take advantage of boost pads and hidden paths. Experiment with different trick sequences to find the most rewarding combos, and balance risk with control to push your scoring potential.</p>
+
+      <h2 class="slope-title">Related Games</h2>
+      <p>Players who enjoy Epic Skater 2 might also like:</p>
+      <ul>
+        <li><strong>Skater XL:</strong> A realistic skateboarding simulator with full trick customization.</li>
+        <li><strong>Epic Skater:</strong> The original arcade skateboarding experience in the same city setting.</li>
+        <li><strong>Tony Hawk's Pro Skater 1+2:</strong> Classic skateboarding with combo-based scoring and challenging levels.</li>
+      </ul>
+    </article>
+    <footer><p>© 2026 Slope Game Online — Unblocked 3D Running Game.</p></footer>
+  </div>
+  <script>
+    const games = [{title:"Slope Game",href:"/",img:"./assets/slope-game.webp"},{title:"Slope 2",href:"./slope-2",img:"./assets/slope-2.webp"},{title:"Slope Bike 2",href:"./slope-bike-2",img:"./assets/slope-bike-2.webp"},{title:"Slope Snowball",href:"./slope-snowball",img:"./assets/slope-snowball.webp"},{title:"Music Race",href:"./music-race",img:"./assets/music-race.webp"},{title:"Horizon",href:"./horizon",img:"./assets/horizon.webp"},{title:"Tunnel Rush",href:"./tunnel-rush",img:"./assets/tunnel-rush.webp"},{title:"Slope 3",href:"./slope-3",img:"./assets/slope-3.webp"},{title:"Slope Multiplayer",href:"./slope-multiplayer",img:"./assets/slope-multiplayer.webp"},{title:"Slope Tunnel",href:"./slope-tunnel",img:"./assets/slope-tunnel.webp"},{title:"Epic Skater 2",href:"./epic-skater-2",img:"./assets/epic-skater-2.webp"},{title:"Crazy Roll 3D",href:"./crazy-roll-3d",img:"./assets/crazy-roll-3d.webp"},{title:"Run 3",href:"./run-3",img:"./assets/RUN-3.webp"},{title:"Cookie Run: OvenBreak",href:"./cookie-run-ovenbreak",img:"./assets/cookie-run-ovenbreak.webp"},{title:"Temple Run 2: Holi Festival",href:"./temple-run-2-holi-festival",img:"./assets/temple-run-2-holi-festival.webp"}];
+    function render(){
+      const g=document.getElementById('game-grid');games.slice(0, 8).forEach(x=>{const a=document.createElement('a');a.className='mod';a.href=x.href;a.innerHTML=`<img src="${x.img}" alt="${x.title}"><div class="mod-label">${x.title}</div>`;g.appendChild(a);});
+      const i=document.querySelector('.search-input'),r=document.getElementById('search-results');i.oninput=()=>{const q=i.value.toLowerCase();r.innerHTML='';if(!q){r.style.display='none';return;}const m=games.filter(x=>x.title.toLowerCase().includes(q));m.forEach(x=>{const d=document.createElement('div');d.className='search-item';d.innerHTML=`<div class="search-thumb"><img src="${x.img}"></div><div>${x.title}</div>`;d.onclick=()=>location.href=x.href;r.appendChild(d);});r.style.display='block';};
+    }document.addEventListener('DOMContentLoaded',render);
+  </script>
+</body>
+</html>
