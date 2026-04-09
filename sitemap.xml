@@ -10,19 +10,19 @@
     <priority>1.0</priority>
   </url>
 
-  <url><loc>https://slopegame-game.github.io/slope-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/slope-bike-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/slope-snowball.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/music-race.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/horizon.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/tunnel-rush.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/slope-3.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/slope-multiplayer.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/slope-tunnel.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/epic-skater-2.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/crazy-roll-3d.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/run-3.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/cookie-run-ovenbreak.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://slopegame-game.github.io/temple-run-2-holi-festival.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-bike-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-snowball</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/music-race</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/horizon</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/tunnel-rush</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-multiplayer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/slope-tunnel</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/epic-skater-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/crazy-roll-3d</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/run-3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/cookie-run-ovenbreak</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://slopegame-game.github.io/temple-run-2-holi-festival</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
 </urlset>
